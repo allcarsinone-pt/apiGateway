@@ -29,6 +29,7 @@ dotenv.config();
 
 const app = makeApp(new LogMockAdapter(), [
     {url: '/users', host: process.env.AUTHSERVICE_URI},
+    {url: '/stands', host: process.env.STANDSSERVICE_URI},
 ]);
 
 app.use('/api-docs', checkDevelopment ,swaggerUi.serve, swaggerUi.setup(specs));
