@@ -23,20 +23,7 @@ const router = express.Router();
  *       400:
  *         description: All fields are required.
  */
-router.post('/gastype/register', async (req, res) => {
-    try {
-        // Send a POST request to the vehicles service with req.body to create a GasType
-        const response = await axios.post(`${process.env.VEHICLESSERVICE_URI}/gastype/register`, req.body);
-        // Send the response back to the client
-        res.status(response.status).json(response.data);
-    } catch (error) {
-        if (error.response) {
-            res.status(error.response.status).json(error.response.data);
-        } else {
-            res.status(500).json({ message: 'Internal server error' });
-        }
-    }
-});
+
 
 /**
  * @swagger
@@ -61,20 +48,7 @@ router.post('/gastype/register', async (req, res) => {
  *       400:
  *         description: All fields are required. It should have gastypeid, name.
  */
-router.put('/gastype/edit', async (req, res) => {
-    try {
-        // Send a PUT request to the vehicles service with req.body to edit a GasType
-        const response = await axios.put(`${process.env.VEHICLESSERVICE_URI}/gastype/edit`, req.body);
-        // Send the response back to the client
-        res.status(response.status).json(response.data);
-    } catch (error) {
-        if (error.response) {
-            res.status(error.response.status).json(error.response.data);
-        } else {
-            res.status(500).json({ message: 'Internal server error' });
-        }
-    }
-});
+
 
 /**
  * @swagger
@@ -97,20 +71,7 @@ router.put('/gastype/edit', async (req, res) => {
  *       400:
  *         description: All fields are required. It should have id.
  */
-router.delete('/gastype/delete', async (req, res) => {
-    try {
-        // Send a DELETE request to the vehicles service with req.body to delete a GasType
-        const response = await axios.delete(`${process.env.VEHICLESSERVICE_URI}/gastype/delete`, { data: req.body });
-        // Send the response back to the client
-        res.status(response.status).json(response.data);
-    } catch (error) {
-        if (error.response) {
-            res.status(error.response.status).json(error.response.data);
-        } else {
-            res.status(500).json({ message: 'Internal server error' });
-        }
-    }
-});
+
 
 /**
  * @swagger
@@ -171,20 +132,7 @@ router.post('/brands/register', async (req, res) => {
  *       400:
  *         description: All fields are required. It should have brandid, name.
  */
-router.put('/brands/edit', async (req, res) => {
-    try {
-        // Send a PUT request to the vehicles service with req.body to edit a Brand
-        const response = await axios.put(`${process.env.VEHICLESSERVICE_URI}/brands/edit`, req.body);
-        // Send the response back to the client
-        res.status(response.status).json(response.data);
-    } catch (error) {
-        if (error.response) {
-            res.status(error.response.status).json(error.response.data);
-        } else {
-            res.status(500).json({ message: 'Internal server error' });
-        }
-    }
-});
+
 
 /**
  * @swagger
@@ -207,20 +155,7 @@ router.put('/brands/edit', async (req, res) => {
  *       400:
  *         description: All fields are required. It should have brandid.
  */
-router.delete('/brands/delete', async (req, res) => {
-    try {
-        // Send a DELETE request to the vehicles service with req.body to delete a Brand
-        const response = await axios.delete(`${process.env.VEHICLESSERVICE_URI}/brands/delete`, { data: req.body });
-        // Send the response back to the client
-        res.status(response.status).json(response.data);
-    } catch (error) {
-        if (error.response) {
-            res.status(error.response.status).json(error.response.data);
-        } else {
-            res.status(500).json({ message: 'Internal server error' });
-        }
-    }
-});
+
 
 /**
  * @swagger
@@ -259,20 +194,7 @@ router.delete('/brands/delete', async (req, res) => {
  *       400:
  *         description: All fields are required. It should have standid, brandid, gastypeid, model, year, mileage, price, availability, description.
  */
-router.post('/register', async (req, res) => {
-    try {
-        // Send a POST request to the vehicles service with req.body to create a vehicle
-        const response = await axios.post(`${process.env.VEHICLESSERVICE_URI}/register`, req.body);
-        // Send the response back to the client
-        res.status(response.status).json(response.data);
-    } catch (error) {
-        if (error.response) {
-            res.status(error.response.status).json(error.response.data);
-        } else {
-            res.status(500).json({ message: 'Internal server error' });
-        }
-    }
-});
+
 
 /**
  * @swagger
@@ -295,20 +217,7 @@ router.post('/register', async (req, res) => {
  *       400:
  *         description: All fields are required. It should have vehicleid.
  */
-router.get('/get', async (req, res) => {
-    try {
-        // Send a GET request to the vehicles service with req.body to get vehicle details
-        const response = await axios.get(`${process.env.VEHICLESSERVICE_URI}/get`, req.body);
-        // Send the response back to the client
-        res.status(response.status).json(response.data);
-    } catch (error) {
-        if (error.response) {
-            res.status(error.response.status).json(error.response.data);
-        } else {
-            res.status(500).json({ message: 'Internal server error' });
-        }
-    }
-})
+
 
 /**
  * @swagger
@@ -345,20 +254,7 @@ router.get('/get', async (req, res) => {
  *       400:
  *         description: Error.
  */
-router.get('/filter', async (req, res) => {
-    try {
-        // Send a GET request to the vehicles service with req.body to filter vehicles based on criteria
-        const response = await axios.get(`${process.env.VEHICLESSERVICE_URI}/filter`, req.body);
-        // Send the response back to the client
-        res.status(response.status).json(response.data);
-    } catch (error) {
-        if (error.response) {
-            res.status(error.response.status).json(error.response.data);
-        } else {
-            res.status(500).json({ message: 'Internal server error' });
-        }
-    }
-});
+
 
 /**
  * @swagger
@@ -395,20 +291,7 @@ router.get('/filter', async (req, res) => {
  *       400:
  *         description: Error.
  */
-router.put('/edit', async (req, res) => {
-    try {
-        // Send a PUT request to the vehicles service with req.body to edit a vehicle
-        const response = await axios.put(`${process.env.VEHICLESSERVICE_URI}/edit`, req.body);
-        // Send the response back to the client
-        res.status(response.status).json(response.data);
-    } catch (error) {
-        if (error.response) {
-            res.status(error.response.status).json(error.response.data);
-        } else {
-            res.status(500).json({ message: 'Internal server error' });
-        }
-    }
-});
+
 
 /**
  * @swagger
@@ -431,19 +314,6 @@ router.put('/edit', async (req, res) => {
  *       400:
  *         description: Error.
  */
-router.delete('/delete', async (req, res) => {
-    try {
-        // Send a DELETE request to the vehicles service with req.body to delete a vehicle
-        const response = await axios.delete(`${process.env.VEHICLESSERVICE_URI}/delete`, { data: req.body });
-        // Send the response back to the client
-        res.status(response.status).json(response.data);
-    } catch (error) {
-        if (error.response) {
-            res.status(error.response.status).json(error.response.data);
-        } else {
-            res.status(500).json({ message: 'Internal server error' });
-        }
-    }
-});
+
 
 module.exports = router;
