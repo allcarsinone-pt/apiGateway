@@ -2,7 +2,8 @@ const LogMockAdapter = require("./adapters/MockLogAdapter");
 const makeApp = require("./app");
 const dotenv = require('dotenv')
 const swaggerUi = require('swagger-ui-express')
-const swaggerJsdoc = require('swagger-jsdoc')
+const swaggerJsdoc = require('swagger-jsdoc');
+const checkDevelopment = require("./doc");
 
 const options = {
     definition: {
@@ -30,7 +31,7 @@ const app = makeApp(new LogMockAdapter(), [
     {url: '/users', host: process.env.AUTHSERVICE_URI},
 ]);
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+app.use('/api-docs', checkDevelopment ,swaggerUi.serve, swaggerUi.setup(specs));
 app.listen(3000, async () => {
     const logger = app.get('logAdapter');
     await logger.execute({from: 'api-gateway', data: 'Api Gateway running on http://localhost:3000', date: new Date(),status: 'info'});
