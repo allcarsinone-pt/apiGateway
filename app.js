@@ -9,11 +9,6 @@ const makeApp = (logAdapter = new LogMockAdapter(), proxies = []) => {
         console.log(`Proxying ${proxy.url} to ${proxy.host}`);
         app.use(proxy.url, createProxyMiddleware({target: proxy.host, changeOrigin: true}));
     }
-    
-    // Routes
-    //app.use('/users', usersRoutes);
-    //app.use('/stands', standsRoutes);
-    //app.use('/vehicles', vehiclesRoutes);
 
     return app;
 }
