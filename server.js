@@ -27,8 +27,15 @@ const specs = swaggerJsdoc(options);
 
 dotenv.config();
 
+/**
+ * Need to define AUTHSERVICE_URI, SALESSERVICE_URI, VEHICLESERVICE_URI, STANDSSERVICE_URI in .env file or kubernetes env vars
+ 
+ */
 const app = makeApp(new LogMockAdapter(), [
     {url: '/users', host: process.env.AUTHSERVICE_URI},
+    {url: '/payments', host: process.env.SALESSERVICE_URI},
+    {url: '/vehicles', host: process.env.VEHICLESERVICE_URI},
+    {url: '/stands', host: process.env.STANDSSERVICE_URI}
 ]);
 
 app.use('/api-docs', checkDevelopment ,swaggerUi.serve, swaggerUi.setup(specs));
