@@ -32,8 +32,8 @@ jobs:
             docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       - name: Build Image
         working-directory: ./
-        run: docker build -t allcarsinone/apiGateway_service:${{ github.sha }} -t allcarsinone/apiGateway_service:latest .
+        run: docker build -t allcarsinone/apigateway_service:${{ github.sha }} -t allcarsinone/apigateway_service:latest .
       - name: Push to Docker Step 1
-        run: docker push allcarsinone/apiGateway_service:${{ github.sha }}
+        run: docker push allcarsinone/apigateway_service:${{ github.sha }}
       - name: Push to Docker Step 2
-        run: docker push allcarsinone/apiGateway_service:latest
+        run: docker push allcarsinone/apigateway_service:latest
