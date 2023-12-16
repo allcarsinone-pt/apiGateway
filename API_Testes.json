@@ -1,0 +1,962 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "AllCarsInOne",
+    "description": "An car stand aggregator",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/vehicles/gastype/edit": {
+      "put": {
+        "summary": "GasType edit",
+        "description": "Edit a GasType",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditGasTypeRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Gas Type updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditGasTypeSuccessRequestBody"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "All fields are required. It should have gastypeid, name | GasType doesnt exists"
+          },
+          "401": {
+            "description": "No token provided | Invalid Authentication"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/vehicles/gastype/register": {
+      "post": {
+        "summary": "Register a Gas Type",
+        "description": "Registers a Gas Type",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterGasTypeRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Brand registered successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegisterGasTypeSuccessResponseBody"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "All fields are required. It should have name"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/vehicles/brands/edit": {
+      "put": {
+        "summary": "Brand edit",
+        "description": "Edit a brand",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditBrandRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Brand updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditBrandSuccessRequestBody"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "All fields are required. It should have brandid, name | Brand doesnt exists"
+          },
+          "401": {
+            "description": "No token provided | Invalid Authentication"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/vehicles/brands/register": {
+      "post": {
+        "summary": "Register a vehicle brand",
+        "description": "Registers a vehicle brand",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterBrandRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Brand registered successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegisterBrandSuccessResponseBody"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "All fields are required. It should have name"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/vehicles/edit": {
+      "put": {
+        "summary": "Vehicle edit",
+        "description": "Edit a vehicle",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditVehicleRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Vehicle updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditVehicleSuccessRequestBody"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "All fields are required. It should have vehicleid, standid, brandid, gastypeid, model, year, mileage, price, availability, description | Vehicle doesnt exists"
+          },
+          "401": {
+            "description": "No token provided | Invalid Authentication"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/vehicles/register": {
+      "post": {
+        "summary": "Register a vehicle",
+        "description": "Registers a vehicle",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterVehicleRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Vehicle registered successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegisterVehicleSuccessResponseBody"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "All fields are required. It should have standid, brandid, gastypeid, model, year, mileage, price, availability, description"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/users/register": {
+      "post": {
+        "summary": "Register a user",
+        "description": "Registers an user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterUserRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User registered successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegisterUserSuccessResponseBody"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing fields | Password must be at least 8 characters | Passwords don t match | Email already used | Invalid email"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "summary": "Logs in a user",
+        "description": "Logs in a user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginUserRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginUserSuccessResponseBody"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Email or password incorrect"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/users/validate": {
+      "get": {
+        "summary": " User token validation",
+        "description": "Validates a user token",
+        "responses": {
+          "200": {
+            "description": "User validated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegisterUserSuccessResponseBody"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Authentication | No token provided"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/users/edit": {
+      "put": {
+        "summary": "User profile edit",
+        "description": "Edit user profile",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditUserRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegisterUserSuccessResponseBody"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing fields | Email already used | Name is required| Invalid user"
+          },
+          "401": {
+            "description": "No token provided | Invalid Authentication"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/users/changepwd": {
+      "put": {
+        "description": "Change password route when authenticated",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Password updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChangePasswordSuccessRequestBody"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Passwords do not match | Old password do not match | User not found"
+          },
+          "401": {
+            "description": "No token provided | Invalid Authentication"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "EditBrandSuccessRequestBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "New name of brand"
+          }
+        }
+      },
+      "EditVehicleSuccessRequestBody": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "ID of vehicle"
+          },
+          "standid": {
+            "type": "string",
+            "description": "StandID of vehicle"
+          },
+          "brandid": {
+            "type": "string",
+            "description": "BrandID of vehicle"
+          },
+          "gastypeid": {
+            "type": "string",
+            "description": "GasTypeID of vehicle"
+          },
+          "model": {
+            "type": "string",
+            "description": "Vehicle model"
+          },
+          "year": {
+            "type": "string",
+            "description": "Vehicle year"
+          },
+          "mileage": {
+            "type": "string",
+            "description": "Vehicle mileage"
+          },
+          "price": {
+            "type": "string",
+            "description": "Vehicle price"
+          },
+          "availability": {
+            "type": "string",
+            "description": "Vehicle availability"
+          },
+          "description": {
+            "type": "string",
+            "description": "Vehicle description"
+          }
+        }
+      },
+      "EditVehicleRequestBody": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "ID of vehicle"
+          },
+          "standid": {
+            "type": "string",
+            "description": "StandID of vehicle"
+          },
+          "brandid": {
+            "type": "string",
+            "description": "BrandID of vehicle"
+          },
+          "gastypeid": {
+            "type": "string",
+            "description": "GasTypeID of vehicle"
+          },
+          "model": {
+            "type": "string",
+            "description": "Vehicle model"
+          },
+          "year": {
+            "type": "string",
+            "description": "Vehicle year"
+          },
+          "mileage": {
+            "type": "string",
+            "description": "Vehicle mileage"
+          },
+          "price": {
+            "type": "string",
+            "description": "Vehicle price"
+          },
+          "availability": {
+            "type": "string",
+            "description": "Vehicle availability"
+          },
+          "description": {
+            "type": "string",
+            "description": "Vehicle description"
+          }
+        }
+      },
+      "RegisterVehicleSuccessResponseBody": {
+        "type": "object",
+        "properties": {
+          "standid": {
+            "type": "integer",
+            "description": "Stand ID"
+          },
+          "brandid": {
+            "type": "integer",
+            "description": "Brand ID"
+          },
+          "gastypeid": {
+            "type": "integer",
+            "description": "GasType ID"
+          },
+          "model": {
+            "type": "string",
+            "description": "Vehicle model"
+          },
+          "year": {
+            "type": "integer",
+            "description": "Vehicle year"
+          },
+          "mileage": {
+            "type": "integer",
+            "description": "Vehicle mileage"
+          },
+          "price": {
+            "type": "integer",
+            "description": "Vehicle price"
+          },
+          "availability": {
+            "type": "boolean",
+            "description": "Vehicle availability"
+          },
+          "description": {
+            "type": "string",
+            "description": "Vehicle description"
+          },
+          "id": {
+            "type": "integer",
+            "description": "Vehicle id"
+          }
+        }
+      },
+      "RegisterVehicleRequestBody": {
+        "type": "object",
+        "properties": {
+          "standid": {
+            "type": "string",
+            "description": "StandID of vehicle"
+          },
+          "brandid": {
+            "type": "string",
+            "description": "BrandID of vehicle"
+          },
+          "gastypeid": {
+            "type": "string",
+            "description": "GasTypeID of vehicle"
+          },
+          "model": {
+            "type": "string",
+            "description": "Vehicle model"
+          },
+          "year": {
+            "type": "string",
+            "description": "Vehicle year"
+          },
+          "mileage": {
+            "type": "string",
+            "description": "Vehicle mileage"
+          },
+          "price": {
+            "type": "string",
+            "description": "Vehicle price"
+          },
+          "availability": {
+            "type": "string",
+            "description": "Vehicle availability"
+          },
+          "description": {
+            "type": "string",
+            "description": "Vehicle description"
+          }
+        }
+      },
+      "RegisterGasTypeSuccessResponseBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Gas Type name"
+          }
+        }
+      },
+      "RegisterGasTypeRequestBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "GasType name"
+          }
+        }
+      },
+      "EditGasTypeRequestBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "GasType name"
+          },
+          "id": {
+            "type": "integer",
+            "description": "GasType ID"
+          }
+        }
+      },
+      "RegisterBrandSuccessResponseBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Brand ID"
+          }
+        }
+      },
+      "RegisterBrandRequestBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Brand name"
+          }
+        }
+      },
+      "EditBrandRequestBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Brand name"
+          },
+          "brandid": {
+            "type": "integer",
+            "description": "Brand ID"
+          }
+        }
+      },
+      "RegisterStandRequestBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Stand name"
+          },
+          "location": {
+            "type": "string",
+            "description": "Stand location"
+          },
+          "phone": {
+            "type": "string",
+            "description": "Stand phone"
+          },
+          "mobilephone": {
+            "type": "string",
+            "description": "Stand mobilephone"
+          },
+          "schedule": {
+            "description": "Stand Schedule"
+          },
+          "userid": {
+            "type": "integer",
+            "description": "Owner of Stand (userid)"
+          }
+        }
+      },
+      "EditGasTypeSuccessRequestBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of GasType"
+          }
+        }
+      },
+      "EditStandRequestBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Stand name"
+          },
+          "location": {
+            "type": "string",
+            "description": "Stand location"
+          },
+          "phone": {
+            "type": "string",
+            "description": "Stand phone"
+          },
+          "mobilephone": {
+            "type": "string",
+            "description": "Stand mobilephone"
+          },
+          "schedule": {
+            "description": "Stand Schedule"
+          },
+          "userid": {
+            "type": "integer",
+            "description": "Owner of Stand (userid)"
+          },
+          "standid": {
+            "type": "integer",
+            "description": "Stand ID"
+          }
+        }
+      },
+      "ChangePasswordSuccessRequestBody": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Password success"
+          },
+          "data": {
+            "type": "object",
+            "description": "User data"
+          }
+        }
+      },
+      "ChangePasswordRequestBody": {
+        "type": "object",
+        "properties": {
+          "oldPassword": {
+            "type": "string",
+            "description": "User old password"
+          },
+          "password": {
+            "type": "string",
+            "description": "User new password"
+          },
+          "confirmPassword": {
+            "type": "string",
+            "description": "User confirm new password"
+          }
+        }
+      },
+      "EditUserRequestBody": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "New username"
+          },
+          "name": {
+            "type": "string",
+            "description": "New user name"
+          },
+          "email": {
+            "type": "string",
+            "description": "New user email"
+          },
+          "mobilephone": {
+            "type": "string",
+            "description": "New user mobilephone"
+          },
+          "city": {
+            "description": "New user city"
+          },
+          "address": {
+            "type": "string",
+            "description": "New user address"
+          },
+          "postalcode": {
+            "type": "string",
+            "description": "New user postalcode"
+          },
+          "role_id": {
+            "type": "integer",
+            "description": "New user role_id"
+          }
+        }
+      },
+      "LoginUserSuccessResponseBody": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+          }
+        }
+      },
+      "LoginUserRequestBody": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "Email to login"
+          },
+          "password": {
+            "type": "string",
+            "description": "User password"
+          }
+        }
+      },
+      "RegisterUserSuccessResponseBody": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "User name"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of user"
+          },
+          "email": {
+            "type": "string",
+            "description": "User email"
+          },
+          "city": {
+            "type": "string",
+            "description": "User city"
+          },
+          "mobilephone": {
+            "type": "string",
+            "description": "User mobilephone"
+          },
+          "address": {
+            "type": "string",
+            "description": "User address"
+          },
+          "postalcode": {
+            "type": "string",
+            "description": "User postalcode"
+          },
+          "password": {
+            "type": "string",
+            "description": "User password"
+          },
+          "role_id": {
+            "type": "integer",
+            "description": "Users role id"
+          }
+        }
+      },
+      "RegisterUserRequestBody": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "User name"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of user"
+          },
+          "email": {
+            "type": "string",
+            "description": "User email"
+          },
+          "mobilephone": {
+            "type": "string",
+            "description": "User mobilephone"
+          },
+          "city": {
+            "description": "User city"
+          },
+          "address": {
+            "type": "string",
+            "description": "User address"
+          },
+          "postalcode": {
+            "type": "string",
+            "description": "User postalcode"
+          },
+          "confirmPassword": {
+            "description": "User password confirmation"
+          },
+          "password": {
+            "type": "string",
+            "description": "User password"
+          },
+          "role_id": {
+            "type": "integer",
+            "description": "Users role id"
+          }
+        }
+      },
+      "SpacecraftId": {
+        "type": "string",
+        "description": "The unique identifier of a spacecraft"
+      },
+      "Spacecraft": {
+        "required": [
+          "id",
+          "name",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/SpacecraftId"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "capsule",
+              "probe",
+              "satellite",
+              "spaceplane",
+              "station"
+            ]
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "Error": {
+        "required": [
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "A human readable error message"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
