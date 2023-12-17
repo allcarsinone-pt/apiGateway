@@ -4,7 +4,7 @@ const dotenv = require( 'dotenv')
 const swaggerUi = require('swagger-ui-express')
 const swaggerJsdoc = require('swagger-jsdoc');
 const checkDevelopment = require("./doc");
-const docs = require("./API_Testes.json")
+const docs = require("./documentation.json")
 
 /*const options = {
     definition: {
