@@ -135,8 +135,8 @@
     },
     "/payments/deletePaymentMethod/{id}": {
       "delete": {
-        "description": "Delete a Payment Method by ID",
-        "summary": "Delete a Payment Method by ID",
+        "description": "Deletes a Stand",
+        "summary": "Delete a Stand by ID",
         "tags": [
           "payments"
         ],
@@ -153,13 +153,48 @@
         ],
         "responses": {
           "204": {
-            "description": "Payment Method deleted successfully"
+            "description": "Stand deleted successfully"
           },
           "400": {
             "description": "Error"
           },
           "500": {
             "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/stands/location/{standid}": {
+      "get": {
+        "description": "Get stand location (coordinates)",
+        "summary": "Get stand location (coordinates)",
+        "tags": [
+          "stands"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "standid",
+            "required": true,
+            "schema": {
+              "type": "number"
+            },
+            "description": "ID of the stand"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Stand location got successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandLocationSuccessRequestBody"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Stand not found"
           }
         }
       }
@@ -269,8 +304,8 @@
     },
     "/vehicles/gastype/delete/{gastypeid}": {
       "delete": {
-        "description": "Deletes a GasType",
-        "summary": "Delete a GasType by ID",
+        "description": "Deletes a Stand",
+        "summary": "Delete a Stand by ID",
         "tags": [
           "vehicles"
         ],
@@ -639,7 +674,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RegisterVehicleRequestBody"
+                "$ref": "#/components/schemas/RegisterUserRequestBody"
               }
             }
           }
@@ -1049,6 +1084,19 @@
           "userid": {
             "description": "Owner of Stand (userid)",
             "type": "integer"
+          }
+        }
+      },
+      "StandLocationSuccessRequestBody": {
+        "type": "object",
+        "properties": {
+          "latitude": {
+            "description": "Stand latitude",
+            "type": "number"
+          },
+          "longitude": {
+            "description": "Stand longitude",
+            "type": "number"
           }
         }
       },
